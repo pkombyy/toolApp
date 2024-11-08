@@ -13,7 +13,10 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Мы используем вашу камеру для сканирования QR-кодов."
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -27,7 +30,11 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-camera",
+        {
+          "cameraPermission": "Разрешите доступ к камере, чтобы сканировать QR-коды."
+        }
     ],
     "experiments": {
       "typedRoutes": true
