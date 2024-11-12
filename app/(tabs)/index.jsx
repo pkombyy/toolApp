@@ -25,7 +25,7 @@ const Reader = () => {
             setScanned(true);
             try {
                 // Проверяем, является ли отсканированный код ссылкой
-                // await  Linking.openURL(data);
+                await  Linking.openURL(data);
                 scanStory.addUserCode(data,showPopup);
                 console.log(scanStory.usersScans);
                 showPopup(`Содержимое кода: ${data}`, "success");
