@@ -54,13 +54,14 @@ const Reader = () => {
                     <CameraView
                         onBarcodeScanned={scanned ? undefined : handleBarCodeScanned}
                         style={StyleSheet.absoluteFillObject}
-                    />
+                    >
                     <LottieView
                         source={anim2}
                         style={{ flex: 1 }}
                         autoPlay
                         loop
                     />
+                    </CameraView>
                 </View>
         </View>
     );
