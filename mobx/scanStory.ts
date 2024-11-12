@@ -8,41 +8,19 @@ class scanStoryContainer {
     }
 
     // Метод для добавления кода в массив
-  addUserCode(code: any) {
-    const { showPopup } = usePopupContext();
-    const index = this.usersScans.findIndex(item => item.id === code.id && (item.data === code.data));
-    console.log(index);
-    if (index === -1) {
-        this.usersScans.push(code);
-        // console.log('Code added:', code);
-        showPopup(`код - ${code.data} сохранен в историю`, 'success')
-    } else {
-        console.log('Code already exists:', code);
-    }
-  }
-
-  // Метод для добавления кода в массив
-  addTask(code: any) {
-    const { showPopup } = usePopupContext();
-    const index = this.usersScans.findIndex(item => item.id === code.id && (item.data === code.data));
-    console.log(index);
-    if (index === -1) {
-        this.usersScans.push(code);
-        // console.log('Code added:', code);
-        showPopup(`код - ${code.data} сохранен в историю`, 'success')
-    } else {
-        console.log('Code already exists:', code);
-    }
+    addUserCode(code: string, showPopup: (message: string, type: string) => void) {
+      const index = this.usersScans.findIndex(item => item === code);
+      if (index === -1) {
+          this.usersScans.push(code);
+          showPopup(`код - ${code} сохранен в историю`, 'success');
+      } else {
+          console.log('код уже сохранен:', code);
+      }
   }
 
     // Метод для удаления кода по индексу
-    removeUserCode(id: number, code: string) {
-    const { showPopup } = usePopupContext();
-
-      const index = this.usersScans.findIndex(item => item.id === id && (item.data === code));
-    // console.log(index,this.userCodes);
-    showPopup(`код - ${code} удален из истории`, 'success')
-
+    removeUserCode(code: string) {
+      const index = this.usersScans.findIndex(item => item === code);
     if (index !== -1) {
           this.usersScans.splice(index, 1);
       }

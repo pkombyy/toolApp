@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { PopupProvider, usePopupContext } from '@/context/PopupContext';
+import Popup from '@/components/popup';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -26,12 +28,26 @@ export default function RootLayout() {
     return null;
   }
 
+  const PopupComponent = () => {
+    const { popup } = usePopupContext();
+  
+    return (
+      <Popup
+        type={popup.type}
+        message={popup.message}
+        PopVisible={popup.popVisible}
+      />
+    );
+  };
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-    </ThemeProvider>
+    <PopupProvider>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="+not-found" />
+        </Stack>
+      </ThemeProvider>
+    <PopupComponent />
+    </PopupProvider>
   );
 }

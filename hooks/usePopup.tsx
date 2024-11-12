@@ -30,7 +30,7 @@ const usePopup = (): IUsePopup => {
 
     setTimeout(() => {
       setPopup((prevPopup) => ({ ...prevPopup, popVisible: false }));
-    }, 3000);
+    }, 10000);
   };
 
   return { popup, showPopup };
